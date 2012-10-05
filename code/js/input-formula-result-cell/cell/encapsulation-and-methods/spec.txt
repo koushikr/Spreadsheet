@@ -1,0 +1,25 @@
+Cell with Encapsulated state
+============================
+
+
+Construction Interface
+----------------------
+
+Cell.make(input : number, formula : Formula)  : Cell
+
+
+Interaction Interface
+---------------------
+  getInput() : Number
+  setInput(v : Number) :    Void
+  getResult(): Number
+  showFormula() : String
+  setFormula(f : Formula) : Void
+
+
+Invariant
+----------
+var c : Cell;
+
+c.getResult() === c.getFormula().evalExp(c.getInput())
+

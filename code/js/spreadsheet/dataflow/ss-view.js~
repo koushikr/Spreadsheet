@@ -1,0 +1,25 @@
+
+var SSView = {};
+SSView.rowContextMenu = null;
+SSView.colContextMenu = null;
+
+SSView.make = function(ss) {
+
+    var a = {};
+
+    var noRows = ss.getNoRows();
+    var noCols = ss.getNoCols();
+
+    var table = DOM.tableWithGenerator(
+		noRows, 
+                noCols,
+                function(i) {return RowHeaderView.make(i);},
+                function(j) {return ColHeaderView.make(j);},
+                function(i,j) {
+                    return InputController.make(ss.getCell(i,j).getResult(), ss.getCell(i,j)).getEditor();},
+                                     {id:"ss-table"}  );
+
+    document.body.appendChild(table);
+    a.table = table;
+}
+

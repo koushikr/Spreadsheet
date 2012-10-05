@@ -1,0 +1,241 @@
+.. -*- coding: utf-8 -*-
+
+=================================================================
+Input-Formula-Result Cell: A case study in Object Oriented Design
+=================================================================
+
+.. contents::
+.. sectnum::
+
+
+Object literals
+---------------
+
+* motivation
+    Need to aggregate related information.
+
+* solution
+    Object literal with fields
+
+* code directory
+    `object-literal`_
+
+.. _object-literal: object-literal
+
+
+Constructors to preserve invariants
+-----------------------------------
+
+* motivation
+   open tuple with read-only fields: Breaks invariants.
+
+* solution
+   open tuple with constructor
+
+* code directory
+    `constructor`_
+
+.. _constructor: constructor
+
+
+
+Mutation
+--------
+
+* motivation
+   Extend object interface so that object properties may be changed.
+
+* solution
+   Make fields mutable.
+
+* code directory
+    `mutation`_
+
+.. _mutation: mutation
+
+
+State Encapsulation and methods
+-------------------------------
+
+* motivation
+   Making fields mutable breaks invariants.
+
+* solution
+   encapsulation using lexical scope, field access through methods.
+
+* code directory
+    `encapsulation-and-methods`_
+
+.. _encapsulation-and-methods: encapsulation-and-methods
+
+
+State variables and observers
+-----------------------------
+
+* motivation
+   previous solution runs recompute in a somewhat ad hoc manner.
+
+* solution
+   identify state variables and state changes.  Attach
+   handlers to state change.
+
+* code directory
+    `state-variables`_
+
+.. _state-variables: state-variables
+
+
+
+User Display
+------------
+
+* motivation
+   Display contents of cell.
+
+* solution
+    Extend the cell to into a Graphical User Interface.
+    implement GUI using html text input elements for
+    display.
+
+* code directory
+    `user-display`_
+
+.. _user-display: user-display
+
+
+
+Model View Separation
+---------------------
+* motivation
+
+     previous solution lacks modularity.  Separating the
+     cell from its view allows us to think about the cell's
+     semantics independent of its view.  Leads to the
+     flexibility to attaching multiple views, if necessary. 
+
+* solution
+
+   Model and view are separate objects.  The system wires
+   the view to the model. 
+
+
+* code directory
+    `model-view`_
+
+.. _model-view: model-view
+
+
+
+User controls
+-------------
+
+* motivation
+   previous solution does not allow user to edit the input
+   text box.  
+
+* solution
+    Attach DOM events (dblclick and keypress) to 
+    the text box, which now plays the role of an editor.
+
+* code directory
+    `user-controls`_
+
+.. _user-controls: user-controls
+
+
+Controlling user interaction: The model view controller
+-------------------------------------------------------
+
+* motivation
+
+    previous solution does not separate the control logic in
+    the input view from the view itself.
+
+
+* solution
+
+   View state is separated into data state and control
+   state.  The controller decides the control state of the
+   view: whether the view is being edited, whether the input
+   is valid, etc.  Editor delegates all event handing to the
+   input-controller.
+
+* code directory
+    `model-view-controller`_
+
+.. _model-view-controller: model-view-controller
+
+
+Formula Language
+----------------
+
+*  motivation
+
+   Define a concrete syntax for the formula expression
+   language and accept concrete syntax via the formula input
+   box.
+
+* code directory
+
+  Unimplemented as yet.
+
+
+
+Concurrency
+-----------
+
+* motivation
+
+    The previous solution allows the cell to be modified via
+    the API concurrently while input is being edited via
+    GUI.  We would like concurrent access to the cell be
+    controlled.
+
+
+
+* solution
+
+   A concurrency controller for the model (cell) intercepts
+   all interaction (API and GUI) with the cell.  A new state
+   variable Busy determines whether the cell is busy
+   interacting in a way that could potentially change its
+   state, e.g, via any of the set methods, or via the text
+   input by the user through the GUI controls.  When the
+   cell is busy, interaction is allowed only via limited
+   interfaces, i.e., only one of the text boxes, or only
+   some of the API methods.
+
+* code directory
+    `concurrency`_
+
+.. _concurrency: concurrency
+
+
+
+
+Persistence
+-----------
+
+* motivation
+
+   Up until now, there was no way to save the cell in a file
+   and read it back.
+
+* solution
+
+   Extend the interface to include methods that save and
+   read back the cell's state from a persistent store
+   (server).
+
+* code directory 
+
+  Unimplemented as yet.
+
+
+
+
+
+
+
+
+

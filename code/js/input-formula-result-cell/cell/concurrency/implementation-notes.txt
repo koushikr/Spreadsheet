@@ -1,0 +1,15 @@
+* Using the debugging interface, setting the busy boolean
+  state variable to true will turn the input box pink.
+  Setting busy to false will reset the color of the input
+  box to white.  (Verify this from the command line.)
+
+* Only the input view has user control.  Formula should also
+  have user control.
+
+* isBeingEdited should be made a state variable. 
+
+* The inputBox is being edited, the cell's state may be
+  accessed and changed using the API.  The cell's controller
+  should prevent this but doesn't.
+
+

@@ -1,0 +1,26 @@
+Construction Interface
+----------------------
+
+Cell.make : [input : number, formula : Exp] -> Cell
+
+Interaction Interface
+----------------------
+
+input :  number  
+formula : Exp    
+result : number  
+
+Invariant
+---------
+
+result === formula.evaluate(input);
+
+
+Notes
+-----
+
+1. Constructing the object using the constructor ensures
+the invariant.
+
+
+

@@ -1,0 +1,35 @@
+Cell with State Variables and Handlers
+======================================
+
+
+Construction Interface
+----------------------
+
+Cell.make(input : number, formula : exp)  : Cell
+
+
+State Variables
+---------------
+
+input   : number 
+formula : Exp
+result  : number
+
+Cell Application Programmer Interface
+-------------------------------------
+  getInput() : number
+  setInput(v : number) :    Void
+  getResult(): number
+  showFormula() : string
+  setFormula(f : Formula) : Void
+
+
+Invariant
+----------
+
+var c : Cell
+
+result === formula.evalExp(input);
+
+
+

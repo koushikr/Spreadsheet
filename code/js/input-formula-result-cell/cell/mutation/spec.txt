@@ -1,0 +1,28 @@
+Construction Interface
+----------------------
+
+Cell.make(input : number, formula : Exp) -> Cell
+
+Interaction Interface
+----------------------
+
+input   : number  MUTABLE
+formula : Exp     MUTABLE
+result  : number
+
+Invariant
+---------
+
+result === formula.evaluate(input);
+
+
+Notes
+-----
+
+Using the construction interface guarantees that the created
+object satisfies the invariant.  However, the interaction
+interface does not.  Arbitrary changes to the input or
+formula will break the invariant.
+
+
+

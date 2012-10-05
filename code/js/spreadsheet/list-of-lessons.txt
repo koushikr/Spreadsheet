@@ -1,0 +1,134 @@
+.. -*- coding: utf-8 -*-
+
+==================================
+Spreadsheet: Building it in stages
+==================================
+
+.. contents::
+.. sectnum::
+
+
+
+Formula-result Cell
+-------------------
+
+* summary
+
+  Build a single cell with formula and input control.
+  Support for indices in formula's concrete syntax, but not
+  their evaluation.  A cell's formula evaluation may refer
+  only to numbers, strings or a predefined set of operators,
+  and not indices.  An evaluated formula is replaced by its
+  result in the view.  The view shows the formula when
+  doubleclicked.
+
+* code directory
+    `cell-formula-result`_
+
+.. _cell-formula-result: cell-formula-result
+
+
+SpreadSheet with cell
+---------------------
+
+* summary
+
+  SpreadSheet  has formula-result cells, but no view yet.
+
+* code directory
+    `spreadsheet-with-cell`_
+
+.. _spreadsheet-with-cell: spreadsheet-with-cell
+
+
+SpreadSheet with view
+---------------------
+
+* summary
+
+  SpreadSheet now has a view, but no controls.
+
+* code directory
+    `spreadsheet-with-view`_
+
+.. _spreadsheet-with-view: spreadsheet-with-view
+
+
+Spreadsheet with user controls
+------------------------------
+
+* summary
+
+  The spreadsheet supports user controls.  The user can now
+  add numbers, or formulas in each cell.  The formula
+  language syntax supports indices.  However, formula
+  evaluation is naive.  A formula simply uses the result of
+  any cell it refers.  Breaks the invariant that result is
+  evaluation of formula.
+
+  Fixed point evaluation semantics for a spreadsheet (but
+  the evaluation may never converge.  Eg., A1 = B1+1, B1 =
+  A1+1.)
+
+* code directory
+    `naive-evaluation`_
+
+.. _naive-evaluation: naive-evaluation
+
+
+Dataflow
+--------
+
+* summary 
+  A correct semantics of spreadsheet evaluation requires
+  dataflow analysis.  A topological sort of the dependencies
+  determines order of evaluation.  Cycles in the dependency
+  relation are flagged as errors.  
+
+* code directory
+    `dataflow`_
+
+.. _dataflow: dataflow
+
+
+Persistence
+-----------
+
+* summary 
+  
+    Add ability to store and save spreadsheet using AJAX. 
+
+* code directory
+    `persistence`_
+
+.. _persistence: persistence
+
+
+Row insertion and deletion
+--------------------------
+
+* summary 
+  
+    Support insertion and deletion of rows and colums.
+    Design an appropriate semantics for formula updations.
+
+* code directory
+    `row-insert-delete`_
+
+.. _row-insert-delete: row-insert-delete
+
+
+Concurrency
+-----------
+
+* summary 
+  
+  Control multiple and concurrent interactions with the
+  spreadsheet across the two interfaces (GUI, API).
+
+* code directory
+    `concurrency`_
+
+.. _concurrency: concurrency
+
+

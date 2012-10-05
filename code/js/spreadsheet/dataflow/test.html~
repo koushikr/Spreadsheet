@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+"http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <title>Spread Sheet</title>
+
+    <link rel="stylesheet" type="text/css" href="ss.css" />
+
+    
+    <script type ="text/javascript" 
+            src="../../object-utils/instantiate/instantiate.js">
+    </script>
+
+    <script type ="text/javascript" 
+	    src="../../object-utils/properties/properties.js"></script>
+
+    <script type ="text/javascript" 
+	    src="./collections/arrays/array.js"></script>
+
+    <script type ="text/javascript" 
+	    src="./collections/sets/Set.js"></script>
+	    
+	    <script type ="text/javascript"
+	    src="../../unit-testing/fireunit/driver.js"></script>
+
+    <script type ="text/javascript" 
+	    src="./formula/exp.js"></script>
+
+    <script type ="text/javascript" 
+	    src="./jsparse/jsparse_new.js"></script>
+
+    <script type ="text/javascript"
+            src="./dom/dom.js">
+    </script>
+
+    <script type ="text/javascript"
+            src="../../mvc/handler/handler.js">
+    </script>
+
+    <script type ="text/javascript"
+            src="../../mvc/condition/condition.js">
+    </script>
+
+    <script type ="text/javascript"
+            src="../../mvc/state-var/state-var.js">
+    </script>
+
+    <script type ="text/javascript"
+            src="../../mvc/state-vector/state-vector.js">
+    </script>
+
+    <script type ="text/javascript" 
+            src="cell.js"></script>
+
+    <script type ="text/javascript" 
+            src="cellref-exp.js"></script>
+
+    <script type ="text/javascript" 
+	    src="./formula-parsing/grammar.js"></script>
+
+    <script type ="text/javascript" 
+            src="editor.js"></script>
+
+    <script type ="text/javascript" 
+            src="cell-view.js"></script>
+
+    <script type ="text/javascript" 
+            src="input-controller.js"></script>
+
+    <script type ="text/javascript" 
+            src="row-header.js"></script>
+
+    <script type ="text/javascript" 
+            src="row-header-view.js"></script>
+
+    <script type ="text/javascript" 
+            src="col-header.js"></script>
+
+    <script type ="text/javascript" 
+            src="col-header-view.js"></script>
+
+    <script type ="text/javascript" 
+            src="ss.js"></script>
+
+    	   
+    <script type ="text/javascript" 
+            src="ss-view.js"></script>
+
+    <script type ="text/javascript"
+            src="system.js"></script>
+    
+    <script type ="text/javascript"
+            src="persist.js"></script>
+    
+    <script type ="text/javascript"
+            src="row-col-add.js"></script>	
+   
+   
+    <script type=text/javascript"
+    	   src="ajax.js">
+    	   alert(loaded);
+    	   </script>
+    	   
+    <script type ="text/javascript">
+               
+    function set()
+    {	
+		ss = System.make();
+		tbl=SSView.make(ss);
+    }
+    function reset()
+    {
+    	recreate_view()
+    }
+    function recreate_view()
+    {
+    	if(tbl)
+    	{
+    	 alert("View Recreated");
+    	 document.body.removeChild(tbl.table);
+    	}
+    	tbl=SSView.make(ss);
+    }
+    function row_addr()
+    {
+    	var rowaddr=prompt("Enter the row position to insert", 1);
+    	rowaddr=rowaddr-1;
+	ss.insertRow(rowaddr);
+    	recreate_view();
+    }
+    function col_addr()
+    {
+    	var coladdr=prompt("Enter the col position to insert", 1);
+    	coladdr=coladdr-1;
+    	ss.insertCol(coladdr);
+    	recreate_view();
+    }
+    function row_del()
+    {
+    	var rowdel=prompt("Enter the row position to delete", 1);
+    	rowdel=rowdel-1;
+    	ss.deleteRow(rowdel);
+    	recreate_view();
+    }
+    function col_del()
+    {
+    	var coldel=prompt("Enter the col position to delete", 1);
+    	coldel=coldel-1;
+    	ss.deleteCol(coldel);
+    	recreate_view();
+    }
+    function savefile()
+    {
+    	saveFile(ss);
+    }
+    function openfile()
+    {
+    	readFile();
+    }
+    </script>
+
+  </head>
+<body onload=set()>
+    <script type=text/javascript>
+    
+    </script>	    
+    <input type="submit" id ="save" value="Save" onclick="savefile()" />&nbsp<input type="submit" id ="open" value="Open" onclick="openfile()"/>&nbsp<input type="submit" id="reset" value="Reset" onclick="reset()"/>&nbsp<input type="submit" id ="col add" value="Add Column" onclick="col_addr()"/>&nbsp<input type="submit" id ="row add" value="Add Row" onclick="row_addr()"/>&nbsp<input type="submit" id ="col del" value="Delete Column" onclick="col_del()"/>&nbsp
+<input type="submit" id ="row del" value="Delete Row" onclick="row_del()"/>
+</body>
+
+
+
+</html>
+
+

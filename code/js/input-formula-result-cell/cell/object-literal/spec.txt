@@ -1,0 +1,30 @@
+Construction Interface
+----------------------
+
+The cell object is built as a literal (name value pair)
+consisting of 3 fields: value, formula, result.
+
+Interaction Interface
+---------------------
+
+input   : number
+formula : Exp
+result  : number
+
+Unless explicitly stated, the field variables are 
+
+Invariant
+----------
+
+result = formula.evalExp(input)  
+
+
+Notes
+-----
+
+1. Unless otherwise indicated, all fields are assumed READ-ONLY. 
+ 
+2. The construction as a name value pair does not guarantee
+the invariant.
+
+

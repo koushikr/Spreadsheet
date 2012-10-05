@@ -1,0 +1,52 @@
+Formula Evaluation in Spreadsheet
+=================================
+
+Build on or modify the MVC implementation and the parser
+code posted to design the evaluation of formulas in a
+spreadsheet.
+
+1. Define a formula expression language which includes
+reference to addresses in the spreadsheet and arbitrary
+operations on Formulas which could be arbitrarily nested.
+
+2. Implement the parser for the parser language whose concrete syntax is 
+
+<Exp>  ::= <number> | <Addr>  | (<op> <Exp>*)
+<Addr> ::= <Alpha>+ <Integer>
+<Alpha> ::= [a-z]  | [A-Z]
+
+<op>   ::= <Identifer>
+<Identifier> ::= <Starting><More>*
+<Starting>   ::= <Alpha> | <Special>
+
+<Special>    ::= + - * 0 %
+<More>       ::= <Starting> |<number>
+
+<N>+ means one  or more of <N>
+<N>* means zero or more of <N>
+|  means choice
+
+
+3. Implement a formula evaluator for a cell.  The evaluator
+takes a concrete formula and parses it into the formula
+expression's AST.
+
+
+4. Implement a Graphical user interface for the spreadsheet:
+
+-- By default the cell's result value should be shown. The
+   initial value of each cell is 0.
+
+-- Double clicking the cell should reveal the cell's
+   formula, ready for editing.
+
+-- After editing is over (signalled by a return key), the
+   cell shows the result of evaluation of the formula.
+
+-- Errors (invalid formulas, etc.) must be suitably handled.
+
+
+5. If any assumptions/simplifications/approximations need to
+be made by you, please document these and justify why they
+are reasonable and why you needed to make them.
+

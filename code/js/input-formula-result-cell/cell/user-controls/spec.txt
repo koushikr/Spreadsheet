@@ -1,0 +1,85 @@
+=============
+User Controls
+=============
+
+The Graph User Interface now supports user input into the text boxes.
+
+Cell
+====
+
+
+
+Construction Interface
+----------------------
+
+Cell.make(input : number, formula : exp)  : CellInstance
+
+
+State Variables
+---------------
+
+  input :   number
+  formula : Exp
+  result  : number
+
+
+Application Programmer Interface
+--------------------------------
+  showVar(n : string) : string
+  getInput() : number
+  setInput(v : number) :    void
+  getResult(): number
+  showFormula() : string
+  setFormula(f : Exp) : void
+  setCondition(c : Condition) : void
+  addHandler(sVarName: string, condName: string, h: Handler) : void
+
+
+Graphical User Interface
+------------------------
+
+inputBox:    Box showing  input value
+formulaBox:  Box showing  formula
+resultBox:   Box showing  result value
+
+
+
+Invariant
+----------
+result.getValue() === formula.getValue().evalExp(input.getValue());
+
+
+InputView
+=========
+The input view of the cell. 
+
+
+Constructor Interface
+---------------------
+InputView.make(model : Cell) : InputView
+
+Interaction Interface
+---------------------
+
+  -- Wires the input element to the DOM and sets up the event
+  -- handlers.
+
+  init() : void
+
+Debugging Interface
+-------------------
+  getEditor() : domElement
+  getValue()  : string
+  
+
+GUI Events
+----------
+
+  dblclick : Makes a box editable.  Sets bgcolor to yellow. 
+
+  keypress (keyCode 13): signals the completion of editing
+  of the box.  Resets bgcolor of box to white.
+
+
+inputBox.value  === input.getValue().show();
+resultBox.value === result.getValue().show();

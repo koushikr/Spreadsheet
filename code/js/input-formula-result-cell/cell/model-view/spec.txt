@@ -1,0 +1,117 @@
+==========================
+System with model and view
+==========================
+
+Cell
+====
+
+A cell (model) manages three state variables: input,
+formula, and result.
+
+Construction Interface
+----------------------
+
+Cell.make(input : number, formula : exp)  : Cell
+
+
+State Variables
+---------------
+
+  input :   number
+  formula : Exp
+  result  : number
+
+Application Programmer Interface
+--------------------------------
+
+  showVar(name: string) : string
+  getInput() : number
+  getResult(): number
+  showFormula() : string
+
+  setInput(v : number) : void
+  setFormula(f : Exp)  : void
+  setCondition(sVarName: string,  c : Condition) : void
+  addHandler(sVarName : string,  conditionName : string, handler: Handler): void
+
+
+Invariant
+---------
+
+result.getValue() === formula.getValue(evalExp(input.getValue()));
+
+
+View
+====
+
+A view holds the view of a state variable of the model.  The
+name of the state variable and the model are parameters to
+the view constructor.  Internally, a view instance contains
+a dom input element (readonly), and a handler.  The handler
+subscribes to the change in the state variable; whenever the
+state variable changes, that value reflected in the dom
+elment's value.
+
+Construction Interface
+----------------------
+
+  View.make(name: string, model : Cell) : View
+
+Interaction Interface
+----------------------
+
+  init() : void
+
+
+System
+======
+
+
+The role of the system is to wire the views to the
+document and to wire the handler of each view to the cell.
+This it does by invoking the init method of each view.
+
+
+Construction Interface
+----------------------
+Constructor.make(initInput: number, initFormula: Exp): Controller
+
+
+Interaction Interface
+---------------------
+
+None
+
+
+Debugging Interface
+-------------------
+
+getCell()      :  Cell
+getInputView   :  View
+getFormulaView :  View
+getResultView  :  View
+
+
+Invariants
+----------
+
+getInputView.getValue()   === getCell.getInput();
+getResultView.getValue()  === getCell.getResult();
+getFormulaView.getValue() === getCell.showFormula();
+
+
+Graphical User Interface
+------------------------
+
+inputBox:    Box with  input  value  
+formulaBox:  Box with  input  value
+resultBox:   Box with  result value
+
+
+Invariants
+----------
+
+inputView.getValue() = input.getValue().show();
+formulaView.getValue() = formula.getValue().show();
+resultView.getValue() = result.getValue().show();
+

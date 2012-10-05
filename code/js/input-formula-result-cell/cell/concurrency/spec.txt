@@ -1,0 +1,108 @@
+================
+Model Controller
+================
+
+
+Cell
+====
+
+The GUI supports user input via the text boxes.
+
+Construction Interface
+----------------------
+
+CellController.make(input : number, formula : exp)  : Cell
+
+
+State Variables
+---------------
+
+input: number
+formula: Exp
+result:  number
+
+busy: boolean
+
+
+Application Programmer Interface
+--------------------------------
+  showVar(n : string) : string
+  getInput() : number
+  setInput(v : number) :    void
+  getResult(): number
+  showFormula() : string
+  setFormula(f : Exp) : void
+  setCondition(c : Condition) : void
+  addHandler(sVarName: string, condName: string, h: Handler) : void
+
+
+Graphical User Interface
+------------------------
+
+inputBox:    Box showing  input value
+formulaBox:  Box showing  formula
+resultBox:   Box showing  result value
+
+Input Box Events
+----------------
+
+Dblclick:  If the cell is 
+
+
+Invariant
+----------
+result.getValue() === formula.getValue().evalExp(input.getValue());
+
+
+InputView
+=========
+The input view of the cell. 
+
+
+Constructor Interface
+---------------------
+InputView.make(model : Cell) : InputView
+
+Interaction Interface
+---------------------
+
+  Wires the input element to the DOM and sets up the event
+  handlers.
+
+  init() : void
+
+Debugging Interface
+-------------------
+  getEditor() : domElement
+  getValue()  : string
+  
+
+GUI Events
+----------
+
+Input Box:
+
+  dblclick : Makes a box editable.  Sets bgcolor to yellow.
+  The bgcolor of other boxes is turned to pink.
+
+  keypress (keyCode 13): signals the completion of editing
+  of the box.  Resets bgcolor of box to white.  If input new
+  value is not a number, issues alert and restores to old value.
+  Resets color of other boxes to white.
+
+Color code: 
+
+* White denotes default (may be edited) (only editing of
+  input box is implemented here.)
+
+* Yellow denotes the box is being edited (only for input box).
+
+* Pink denotes the box is not editable because another box
+  is being edited.
+
+
+Invariants
+-----------
+inputBox.value  === input;
+formulaBox.value === formula.show();
+resultBox.value === result;
